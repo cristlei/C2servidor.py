@@ -1,4 +1,4 @@
-Servidor C2 em python, para verificar ips e se a porta 4444 estão online e a porta seestá aberta.
+Servidor C2 em python, para verificar ips e se a porta 4444 estão online e a porta se está aberta.
 Ele mostra a Lista: 0 ( 192.168.*.* , 4444)
                     1 ( 10.0.*.* 4444)
                     2 ( 172.10.*.* 4444)
